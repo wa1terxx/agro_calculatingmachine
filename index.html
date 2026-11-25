@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Калькулятор юнит-экономики агробизнеса</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Decorative background layer (pure CSS, non-interactive) -->
+  <div class="bg-decor" aria-hidden="true">
+    <span class="bg-blob bg-blob--1"></span>
+    <span class="bg-blob bg-blob--2"></span>
+    <span class="bg-blob bg-blob--3"></span>
+    <span class="bg-grid"></span>
+  </div>
+
+  <div class="container">
+    <header class="header">
+      <div class="header__title">
+        <div class="brand">
+          <span class="brand__mark" aria-hidden="true">🌾</span>
+          <h1>Юнит-экономика и себестоимость в агробизнесе</h1>
+        </div>
+        <p class="subtitle">Интерактивный кейс для абитуриентов • Информационные системы и технологии в бизнесе</p>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" id="btn-crop" role="tab" aria-selected="true">🌱 Поле (урожай)</button>
+        <button class="tab-btn" id="btn-farm" role="tab" aria-selected="false">🐄 Ферма (надой)</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card card--inputs">
+        <h2 id="inputs-title">Параметры участка и затрат</h2>
+
+        <div class="row-2">
+          <div class="field">
+            <label for="scale"><span id="lbl-scale">Площадь поля (га)</span></label>
+            <input type="number" id="scale" value="150" min="1" step="1" />
+          </div>
+          <div class="field">
+            <label for="outputPerUnit"><span id="lbl-output">Урожайность (т / га)</span></label>
+            <input type="number" id="outputPerUnit" value="4.2" min="0.1" step="0.1" />
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label for="seedsFeed"><span id="lbl-seeds">Семена на 1 га (₽)</span></label>
+            <input type="number" id="seedsFeed" value="9500" min="0" step="100" />
+          </div>
+          <div class="field">
+            <label for="fertilizer"><span id="lbl-fert">Удобрения и СЗР на 1 га (₽)</span></label>
+            <input type="number" id="fertilizer" value="11000" min="0" step="100" />
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label for="fuel"><span id="lbl-fuel">ГСМ и операции на 1 га (₽)</span></label>
+            <input type="number" id="fuel" value="7500" min="0" step="100" />
+          </div>
+          <div class="field">
+            <label for="lease"><span id="lbl-lease">Аренда техники и базы (₽)</span></label>
+            <input type="number" id="lease" value="1400000" min="0" step="10000" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="price"><span id="lbl-price">Цена реализации за 1 т (₽)</span></label>
+          <input type="number" id="price" value="15000" min="100" step="100" />
+        </div>
+
+        <div class="scenario-box">
+          <h2>⚠️ Стресс-сценарий: погода и рынок</h2>
+          <div class="row-2">
+            <div class="field">
+              <label for="weatherDelta">Погода / продуктивность: <span class="val-pill" id="weatherVal">0%</span></label>
+              <input type="range" id="weatherDelta" min="-50" max="30" value="-20" />
+            </div>
+            <div class="field">
+              <label for="priceDelta">Цена реализации: <span class="val-pill" id="priceVal">0%</span></label>
+              <input type="range" id="priceDelta" min="-40" max="40" value="-10" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card card--results">
+        <div class="results-head">
+          <h2>Экономические показатели</h2>
+          <span id="statusBadge" class="badge ok">ПРИБЫЛЬ</span>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi">
+            <div class="label" id="lbl-cost-unit">Себестоимость 1 т</div>
+            <div class="value" id="costPerUnit">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Маржинальность</div>
+            <div class="value" id="marginPct">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Точка безубыточности</div>
+            <div class="value" id="breakeven">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Прибыль / убыток</div>
+            <div class="value" id="profit">—</div>
+          </div>
+        </div>
+
+        <div class="scenario-result" id="scenarioBox">
+          <strong>Результат стресс-сценария:</strong> загрузка расчёта...
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <span>Данные носят демонстрационный характер</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
